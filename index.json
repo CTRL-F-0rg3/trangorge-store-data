@@ -5,23 +5,15 @@
     {
       "id": "tqztr-editor",
       "name": "TQZTR Editor",
-      "version": "0.1.0",
       "author": "ctrl",
       "description": "Lightweight Qt6 code editor with vertical tabs, OLED theme, Kotlin plugin system and built-in terminal.",
       "category": "Development",
+      "license": "GPL-3.0",
       "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/tqztr-editor.svg",
-      "download_url": "https://github.com/CTRL-F-0rg3/tqztr_edditor/releases/download/v0.1.0/tqztr-editor-linux-v0.1.0.tar.gz",
-      "executable": "bin/tqztr_editor",
-      "build_cmd": "",
-      "install_cmd": "",
-      "dependencies": [
-        "qt6-base",
-        "qscintilla-qt6",
-        "qtermwidget",
-        "jdk-openjdk"
-      ],
       "repo_url": "https://github.com/CTRL-F-0rg3/tqztr_edditor",
-      "license": "GPL-3.0"
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/tqztr_editor",
+      "dependencies": ["qt6-base", "qscintilla-qt6", "qtermwidget", "jdk-openjdk"]
     }
   ]
 }
