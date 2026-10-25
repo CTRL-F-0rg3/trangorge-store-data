@@ -40,6 +40,19 @@
       "asset_pattern": ".*linux.*\\.tar\\.gz$",
       "executable": "bin/quasar",
       "dependencies": ["qt6-base"]
+    },
+    {
+      "id": "docx-editor",
+      "name": "DOCX Editor",
+      "author": "ctrl",
+      "description": "Word document editor with tables, images, lists, headers and footers. Cosmic dark UI.",
+      "category": "Office",
+      "license": "GPL-3.0",
+      "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/docx-editor.svg",
+      "repo_url": "https://github.com/CTRL-F-0rg3/docx_editor",
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/docx_editor",
+      "dependencies": ["qt6-base", "zip", "unzip"]
     }
   ]
 }

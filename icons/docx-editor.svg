@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#150a14"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="doc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d8d8d8"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff2d95"/>
+      <stop offset="1" stop-color="#00ff88"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="24" ry="24" fill="url(#bg)" stroke="#ff2d95" stroke-width="1.5" stroke-opacity="0.5"/>
+  <path d="M 30 18 L 74 18 L 98 42 L 98 110 L 30 110 Z" fill="url(#doc)"/>
+  <path d="M 74 18 L 98 42 L 74 42 Z" fill="url(#fold)"/>
+  <rect x="40" y="55" width="48" height="3" rx="1.5" fill="#333"/>
+  <rect x="40" y="63" width="40" height="3" rx="1.5" fill="#333"/>
+  <rect x="40" y="71" width="30" height="3" rx="1.5" fill="#666"/>
+  <rect x="40" y="79" width="48" height="14" rx="1" fill="none" stroke="#ff2d95" stroke-width="1.5" opacity="0.85"/>
+  <line x1="64" y1="79" x2="64" y2="93" stroke="#ff2d95" stroke-width="1" opacity="0.6"/>
+  <line x1="40" y1="86" x2="88" y2="86" stroke="#ff2d95" stroke-width="1" opacity="0.6"/>
+  <rect x="40" y="100" width="44" height="3" rx="1.5" fill="#333"/>
+  <circle cx="100" cy="28" r="1.5" fill="#ff2d95" opacity="0.8"/>
+  <circle cx="22" cy="100" r="1.2" fill="#00ff88" opacity="0.6"/>
+</svg>
