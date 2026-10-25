@@ -15,5 +15,18 @@
       "executable": "bin/tqztr_editor",
       "dependencies": ["qt6-base", "qscintilla-qt6", "qtermwidget", "jdk-openjdk"]
     }
+    {
+      "id": "uran-pdf",
+      "name": "Uran PDF",
+      "author": "ctrl",
+      "description": "Advanced PDF editor with rich text formatting, table support, and cosmic UI.",
+      "category": "Office",
+      "license": "GPL-3.0",
+      "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/uran-pdf.svg",
+      "repo_url": "https://github.com/CTRL-F-0rg3/uran_pdf",
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/uran_pdf",
+      "dependencies": ["qt6-base", "qt6-pdf"]
+    }
   ]
 }
