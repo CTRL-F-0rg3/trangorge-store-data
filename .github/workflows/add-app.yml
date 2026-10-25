@@ -1,0 +1,99 @@
+name: Add app from issue
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  add-app:
+    if: contains(github.event.issue.labels.*.name, 'app-submission')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Parse issue and add to index.json
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 << 'PY'
+          import json, os, re
+
+          body = os.environ['ISSUE_BODY']
+
+          def field(name):
+              pattern = rf'###\s+{re.escape(name)}\s*\n+(.*?)(?=\n###|\Z)'
+              m = re.search(pattern, body, re.DOTALL | re.IGNORECASE)
+              if not m:
+                  return ''
+              val = m.group(1).strip()
+              if val in ('_No response_', '_none_', 'none', '', 'N/A', 'n/a'):
+                  return ''
+              return val
+
+          app_id = field('Application ID').strip().lower().replace(' ', '-')
+          if not app_id:
+              print("No app ID, skipping")
+              exit(0)
+
+          app = {
+              "id": app_id,
+              "name": field('Application name'),
+              "author": field('Author'),
+              "description": field('Short description'),
+              "repo_url": field('Source repository URL'),
+              "icon_url": field('Icon URL (SVG or PNG, 64x64+)'),
+              "executable": field('Executable path inside archive'),
+              "license": field('License'),
+          }
+
+          download = field('Download URL')
+          if download:
+              app["download_url"] = download
+
+          app = {k: v for k, v in app.items() if v}
+
+          missing = [k for k in ('id', 'name', 'repo_url', 'executable') if k not in app]
+          if missing:
+              print(f"Missing required fields: {missing}")
+              exit(0)
+
+          with open('index.json') as f:
+              data = json.load(f)
+
+          data['apps'] = [a for a in data['apps'] if a.get('id') != app_id]
+          data['apps'].append(app)
+          data['apps'].sort(key=lambda x: x.get('name', '').lower())
+
+          with open('index.json', 'w') as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+
+          print(f"Added/updated: {app_id}")
+          PY
+
+      - name: Commit and push
+        run: |
+          git config user.name "uran-bot"
+          git config user.email "bot@trangorge.org"
+          git add index.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "feat: add app from issue #${{ github.event.issue.number }}"
+          git push
+
+      - name: Comment on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '✅ App added to catalog. It will appear in Uran after the next catalog refresh (restart the app).'
+            })
