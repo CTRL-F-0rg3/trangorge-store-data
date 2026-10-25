@@ -1,0 +1,82 @@
+name: Validate catalog
+
+on:
+  pull_request:
+    paths: ['index.json']
+  push:
+    branches: [main]
+    paths: ['index.json']
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON structure
+        run: |
+          set -e
+          python3 - <<'PY'
+          import json, sys, urllib.request
+
+          with open('index.json') as f:
+              data = json.load(f)
+
+          if 'apps' not in data or not isinstance(data['apps'], list):
+              print("ERROR: missing 'apps' array")
+              sys.exit(1)
+
+          required = ['id', 'name', 'version', 'author', 'description',
+                      'download_url', 'icon_url', 'executable']
+          ids = set()
+          errors = []
+
+          for i, app in enumerate(data['apps']):
+              for field in required:
+                  if field not in app or not app[field]:
+                      errors.append(f"apps[{i}]: missing field '{field}'")
+              if app.get('id') in ids:
+                  errors.append(f"apps[{i}]: duplicate id '{app['id']}'")
+              ids.add(app.get('id'))
+
+              # Check icon URL responds
+              icon = app.get('icon_url', '')
+              if icon.startswith('http'):
+                  try:
+                      req = urllib.request.Request(icon, method='HEAD')
+                      with urllib.request.urlopen(req, timeout=10) as r:
+                          if r.status != 200:
+                              errors.append(f"apps[{i}]: icon_url returned {r.status}")
+                  except Exception as e:
+                      errors.append(f"apps[{i}]: icon_url unreachable: {e}")
+
+          if errors:
+              print("Validation failed:")
+              for e in errors: print(" -", e)
+              sys.exit(1)
+
+          print(f"OK: {len(data['apps'])} apps validated")
+          PY
+
+      - name: Check source repo is open source
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, sys
+          with open('index.json') as f:
+              data = json.load(f)
+          for app in data['apps']:
+              repo = app.get('repo_url', '')
+              if not repo:
+                  continue
+              try:
+                  req = urllib.request.Request(
+                      repo.replace('github.com', 'api.github.com/repos'),
+                      headers={'Accept': 'application/vnd.github+json'})
+                  with urllib.request.urlopen(req, timeout=10) as r:
+                      info = json.load(r)
+                  lic = info.get('license', {})
+                  if not lic:
+                      print(f"WARNING: {app['id']} has no detected license on GitHub")
+              except Exception as e:
+                  print(f"WARNING: {app['id']}: could not check repo: {e}")
+          PY

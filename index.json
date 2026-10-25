@@ -14,7 +14,14 @@
       "executable": "bin/tqztr_editor",
       "build_cmd": "",
       "install_cmd": "",
-      "dependencies": ["qt6-base", "qscintilla-qt6", "qtermwidget", "jdk-openjdk"]
+      "dependencies": [
+        "qt6-base",
+        "qscintilla-qt6",
+        "qtermwidget",
+        "jdk-openjdk"
+      ],
+      "repo_url": "https://github.com/CTRL-F-0rg3/tqztr_edditor",
+      "license": "GPL-3.0"
     }
   ]
 }
