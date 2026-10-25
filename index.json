@@ -27,6 +27,19 @@
       "asset_pattern": ".*linux.*\\.tar\\.gz$",
       "executable": "bin/uran_pdf",
       "dependencies": ["qt6-base", "qt6-pdf"]
+    },
+    {
+      "id": "quasar",
+      "name": "Quasar",
+      "author": "ctrl",
+      "description": "Fast spreadsheet for TrangorgeOS. Full Excel dimensions with cosmic dark theme and 40+ formula functions.",
+      "category": "Office",
+      "license": "GPL-3.0",
+      "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/quasar.svg",
+      "repo_url": "https://github.com/CTRL-F-0rg3/quasar",
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/quasar",
+      "dependencies": ["qt6-base"]
     }
   ]
 }
