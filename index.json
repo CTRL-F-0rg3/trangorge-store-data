@@ -14,7 +14,7 @@
       "asset_pattern": ".*linux.*\\.tar\\.gz$",
       "executable": "bin/tqztr_editor",
       "dependencies": ["qt6-base", "qscintilla-qt6", "qtermwidget", "jdk-openjdk"]
-    }
+    },
     {
       "id": "uran-pdf",
       "name": "Uran PDF",
