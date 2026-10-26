@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-10-25",
+  "updated": "2026-10-26",
   "apps": [
     {
       "id": "tqztr-editor",
@@ -81,6 +81,22 @@
       "executable": "bin/pulsar",
       "dependencies": [
         "qt6-base"
+      ]
+    },
+    {
+      "id": "nova",
+      "name": "Nova",
+      "author": "ctrl",
+      "description": "Presentation editor with WYSIWYG editing, drag and drop images, cosmic dark UI and PDF export. Inspired by OnlyOffice.",
+      "category": "Office",
+      "license": "GPL-3.0",
+      "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/nova.svg",
+      "repo_url": "https://github.com/CTRL-F-0rg3/nova",
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/nova",
+      "dependencies": [
+        "qt6-base",
+        "qt6-webengine"
       ]
     }
   ]
