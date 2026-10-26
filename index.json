@@ -114,6 +114,19 @@
         "cairo",
         "pango"
       ]
+    },
+    {
+      "id": "uran-todo",
+      "name": "Uran To-Do",
+      "author": "ctrl",
+      "description": "Minimalistyczna lista zadań z auto-zapisem, importem .txt i .json, ciemnym motywem Urana i customowym paskiem tytułu.",
+      "category": "Productivity",
+      "license": "GPL-3.0",
+      "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/uran-todo.svg",
+      "repo_url": "https://github.com/CTRL-F-0rg3/uran-todo",
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/uran-todo",
+      "dependencies": []
     }
   ]
 }
