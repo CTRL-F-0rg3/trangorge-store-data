@@ -98,6 +98,22 @@
         "qt6-base",
         "qt6-webengine"
       ]
+    },
+    {
+      "id": "fox-fishing",
+      "name": "Fox Fishing",
+      "author": "ctrl",
+      "description": "Gra o lisie lowiacym ryby - polaczenie Cat Goes Fishing i minigry ze Stardew Valley. Ulepszenia, glebokosci, drapiezniki, nieskonczony grind.",
+      "category": "Game",
+      "license": "MIT",
+      "icon_url": "https://ctrl-f-0rg3.github.io/trangorge-store-data/icons/fox-fishing.svg",
+      "repo_url": "https://github.com/CTRL-F-0rg3/fox-fishing",
+      "asset_pattern": ".*linux.*\\.tar\\.gz$",
+      "executable": "bin/fox-fishing",
+      "dependencies": [
+        "cairo",
+        "pango"
+      ]
     }
   ]
 }
